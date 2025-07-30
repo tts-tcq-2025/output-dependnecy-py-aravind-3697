@@ -60,4 +60,4 @@ if __name__ == '__main__':
     test_rainy_condition()
     test_storm_condition()
     test_cloudy_condition()
-    print("All is well (maybe!)")
+    print("All is well...")
