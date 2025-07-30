@@ -22,5 +22,5 @@ def test_duplicate_colors():
 
 if __name__ == "__main__":
     test_total_combinations()
-    test_no_duplicate_colors()
+    test_duplicate_colors()
     print("All is well...")
