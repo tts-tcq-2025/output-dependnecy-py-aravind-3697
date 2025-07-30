@@ -44,6 +44,14 @@ def cloudy_check():
         'windSpeedKMPH': 20
     }
 
+def stormy_with_rain_check():
+    return {
+        'temperatureInC': 20,
+        'precipitation': 90,  
+        'humidity': 80,
+        'windSpeedKMPH': 60
+    }
+
 def test_rainy_condition():
     weather = report(rainy_check)
     assert "rain" in weather.lower()
@@ -56,8 +64,13 @@ def test_cloudy_condition():
     weather = report(cloudy_check)
     assert "cloudy" in weather.lower()
 
+def test_stormy_with_rain_condition():
+    weather = report(stormy_with_rain_check)
+    assert "storm" in weather.lower()
+
 if __name__ == '__main__':
     test_rainy_condition()
     test_storm_condition()
     test_cloudy_condition()
+    test_stormy_with_rain_condition()
     print("All is well...")
