@@ -1,5 +1,6 @@
 
 
+
 def sensorStub():
     return {
         'temperatureInC': 50,
@@ -7,7 +8,6 @@ def sensorStub():
         'humidity': 26,
         'windSpeedKMPH': 52
     }
-
 
 def report(sensorReader):
     readings = sensorReader()
@@ -20,25 +20,57 @@ def report(sensorReader):
             weather = "Alert, Stormy with heavy rain"
     return weather
 
+def rainy_check():
+    return {
+        'temperatureInC': 20,
+        'precipitation': 90,  
+        'humidity': 80,
+        'windSpeedKMPH': 10
+    }
 
-def testRainy():
-    weather = report(sensorStub)
-    print(weather)
-    assert("rain" in weather)
+def storm_check():
+    return {
+        'temperatureInC': 30,
+        'precipitation': 10,
+        'humidity': 40,
+        'windSpeedKMPH': 70  
+    }
 
+def cloudy_check():
+    return {
+        'temperatureInC': 30,
+        'precipitation': 40,  
+        'humidity': 50,
+        'windSpeedKMPH': 20
+    }
 
-def testHighPrecipitation():
-    # This instance of stub needs to be different-
-    # to give high precipitation (>60) and low wind-speed (<50)
+def stormy_with_rain_check():
+    return {
+        'temperatureInC': 20,
+        'precipitation': 90,  
+        'humidity': 80,
+        'windSpeedKMPH': 60
+    }
 
-    weather = report(sensorStub)
+def test_rainy_condition():
+    weather = report(rainy_check)
+    assert "rain" in weather.lower()
 
-    # strengthen the assert to expose the bug
-    # (function returns Sunny day, it should predict rain)
-    assert(len(weather) > 0);
+def test_storm_condition():
+    weather = report(storm_check)
+    assert "storm" in weather.lower()
 
+def test_cloudy_condition():
+    weather = report(cloudy_check)
+    assert "cloudy" in weather.lower()
+
+def test_stormy_with_rain_condition():
+    weather = report(stormy_with_rain_check)
+    assert "stormy" in weather.lower() and "rain" in weather.lower()
 
 if __name__ == '__main__':
-    testRainy()
-    testHighPrecipitation()
-    print("All is well (maybe!)");
+    test_rainy_condition()
+    test_storm_condition()
+    test_cloudy_condition()
+    test_stormy_with_rain_condition()
+    print("All is well...")
