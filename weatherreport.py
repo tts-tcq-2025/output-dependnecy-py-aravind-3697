@@ -66,7 +66,7 @@ def test_cloudy_condition():
 
 def test_stormy_with_rain_condition():
     weather = report(stormy_with_rain_check)
-    assert "storm" in weather.lower()
+    assert "stormy" in weather.lower() and "rain" in weather.lower()
 
 if __name__ == '__main__':
     test_rainy_condition()
